@@ -1,0 +1,22 @@
+{
+  "name": "oTree-PGG",
+  "description": "Threshold Public Goods Game",
+  "scripts": {
+  },
+  "env": {
+    "REDIS_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql",
+    "heroku-redis"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
