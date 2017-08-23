@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+
+{% block title %}
+    Totale Verdiensten
+{% endblock %}
+
+{% block content %}
+
+    <h4>Uw totale verdiensten uit een willekeurige selectie van gespeelde rondes.</h4>
+
+<hr> </hr>
+
+
+    <p> Uw verdienste in <b>Ronde {{ Constants.paying_phase1 }}</b> was: <b>{{ player.earnings_phase1 }}</b><br>
+        Uw verdienste in <b>Ronde {{ Constants.paying_phase2 }}</b> was: <b>{{ player.earnings_phase2 }}</b><br>
+        Uw verdienste in <b>Ronde {{ Constants.paying_phase3 }}</b> was: <b>{{ player.earnings_phase3 }}</b>
+    </p>
+
+    <p> Daarmee zijn uw totale verdiensten in dit experiment: <b>{{ player.payoff }}</b>.<br>
+        De totale uitbetaling bestaat uit een <i>show-up fee</i> van {{ Constants.participation_fee }} Euro <br>
+        + uw verdiensten uit het experiment (1 punt = {{ Constants.euro_per_point }} Euro).
+        De totale uitbetaling komt daarmee op: <b>{{ player.paid }} Euro</b>.
+    </p>
+
+    <p> Wij willen u verzoeken nog even te blijven zitten en een korte vragenlijst in te vullen.</p>
+
+
+<hr> </hr>
+    <p> <i>Help: Steek alstublieft uw hand op als u een vraag heeft.</i></p>
+{% endblock %}

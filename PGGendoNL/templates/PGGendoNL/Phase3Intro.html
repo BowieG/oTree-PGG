@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Fase 3:
+{% endblock %}
+
+{% block content %}
+
+<p> Welkom bij de laatste fase van het experiment.<br>
+    Deze fase bestaat uit {{ Constants.phase3|length }} rondes.
+</p>
+
+<p>
+    De verdelingsregel voor de uitbetalingen tijdens deze fase wordt beslist door de spelers.<br>
+    De <b>meerderheids stem</b> zal bepalen welke regel er gebruikt wordt.<br>
+    In het geval van een gelijkspel, zal de regel willekeurig worden geselecteerd.
+</p>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: Steek alstublieft uw hand op als u een vraag heeft.</i></p>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+
+{% block title %}
+    Round {{ group.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    <table class="table">
+        <tr>
+            <th>Round</th>
+            <th>Threshold</th>
+            <th>Proposal Player 1</th>
+            <th>Proposal Player 2</th>
+            <th>Proposal Player 3</th>
+            <th>Proposal Player 4</th>
+        </tr>
+        <tr>
+                <td> {{ group.round_number }}</td>
+                <td> <b>{{ group.threshold }}</b></td>
+            {%  for p in subsession.player_set.all %}
+                <td> {{ p.proposal }}</td>
+            {%  endfor %}
+        </tr>
+    </table>
+
+    <hr> </hr>
+
+    <h4><b>Choose your contribution</b></h4>
+
+    <p>
+        In the table above, you can find the <b>threshold</b> that has been voted for.<br>
+        The threshold is: <b>{{ group.threshold }}</b>. <br>
+        This is the group's ambition level for this round.<br>
+    </p>
+
+    <p> The distribution rule for this phase is <b>{{ group.distribution_rule }}</b>.<br>
+        Now you can make a decision on <b>your contribution</b> to the group project for this round.<br>
+        Please submit your contribution in integers, <b> between 0 and 20 points </b>.
+    </p>
+
+    <p> You are <b>player {{ player.id_in_group }}</b> and have been selected as a <b>{{ player.role }} cost</b> player.<br>
+        Player 1 and 2 are low cost players, Player 3 and 4 are high cost players.
+    </p>
+
+    <hr> <hr>
+
+    <p> You are Player <b>{{ player.id_in_group }}</b></p>
+
+    {% formfield player.contribution with label="My contribution to the group project is:" %}
+
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

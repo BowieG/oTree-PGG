@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Phase 2:
+{% endblock %}
+
+{% block content %}
+
+<p> Welcome to Phase 2 of the experiment.<br>
+    This Phase consists of {{ Constants.phase2|length }} Rounds.<br>
+    The Distribution rule during these rounds is <b>{{ group.distribution_rule }}</b>
+</p>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

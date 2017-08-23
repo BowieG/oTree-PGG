@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+
+{% block title %}
+    Ronde {{ group.round_number }} van {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    <h4>Keuze grenswaarde groep bijdragen niveau</h4>
+
+<hr> </hr>
+
+    <p> Hieronder kunt u stemmen wat volgens u de <b>grenswaarde</b> voor het groepsproject moet zijn deze ronde.<br>
+        In andere woorden, het <b>ambitieniveau</b> voor de groep.<br>
+        Gelieve uw voorstel in te voeren in gehele getallen, <b>tussen 0 en 80 punten</b>.
+    </p>
+
+    <p> De verdelingsregel tijdens deze fase is <b>{{ group.distribution_rule }}</b>.</p>
+
+    <p> U bent <b>speler {{ player.id_in_group }}</b> en daarmee bent u een <b>{{ player.role }} kosten</b> speler.<br>
+        Speler 1 en 2 zijn lage kosten spelers, spelers 3 en 4 zijn hoge kosten spelers.
+    </p>
+<hr> </hr>
+
+
+    <p> U bent Speler <b>{{ player.id_in_group }}</b>.</p>
+
+    {% formfield player.proposal with label="Uw voorstel voor het ambitieniveau van de groep is:" %}
+
+<hr> </hr>
+
+    {% next_button %}
+
+
+<hr> </hr>
+    <p> <i>Help: Steek alstublieft uw hand op als u een vraag heeft.</i></p>
+{% endblock %}

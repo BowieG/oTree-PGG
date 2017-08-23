@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+
+{% block title %}
+    Total Earnings
+{% endblock %}
+
+{% block content %}
+
+    <h4>Randomly selected rounds and Total Earnings</h4>
+
+<hr> </hr>
+
+
+    <p> Your payoff in <b>Round {{ Constants.paying_phase1 }}</b> was: {{ player.earnings_phase1 }}<br>
+        Your payoff in <b>Round {{ Constants.paying_phase2 }}</b> was: {{ player.earnings_phase2 }}<br>
+        Your payoff in <b>Round {{ Constants.paying_phase3 }}</b> was: {{ player.earnings_phase3 }}<br>
+    </p>
+
+    <p> The sum of those payoffs is: <b>{{ player.payoff }}</b>.<br>
+        Your total earnings are the participation fee of {{ Constants.participation_fee }} Euro +
+        the sum of payoffs (1 point = {{ Constants.euro_per_point }} Euro).<br>
+        Your total earnings are: <b>{{ player.paid }} Euro</b>.
+    </p>
+
+    <p> Please remain seated while we ask you to fill out a short survey.</p>
+
+
+<hr> </hr>
+
+    {% next_button %}
+
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

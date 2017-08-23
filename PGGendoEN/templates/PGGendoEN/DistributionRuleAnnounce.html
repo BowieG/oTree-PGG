@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Round Announcement
+{% endblock %}
+
+{% block content %}
+
+<p> You are about to play Round {{ subsession.round_number }}.<br>
+    The Distribution rule for this round is <b>{{ group.distribution_rule }}</b>
+
+</p>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

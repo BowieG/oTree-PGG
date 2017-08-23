@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Fase 2:
+{% endblock %}
+
+{% block content %}
+
+<p> Welkom bij de tweede fase van het experiment.<br>
+    Deze fase bestaat uit {{ Constants.phase2|length }} rondes.<br>
+    De verdelingsregel voor de uitbetalingen tijdens deze fase is: <b>{{ group.distribution_rule }}</b>
+</p>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: Steek alstublieft uw hand op als u een vraag heeft.</i></p>
+{% endblock %}

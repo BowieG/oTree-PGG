@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+
+{% block title %}
+    Ronde {{ group.round_number }} van {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+
+    <hr> </hr>
+
+    <h4><b>Kies uw bijdrage.</b></h4>
+
+    <p>
+        De grenswaarde is: <b>{{ group.threshold }}</b>. <br>
+        Dit is het ambitieniveau van de groepsbijdrage voor de volgende ronde.<br>
+    </p>
+
+    <p> In deze fase is de verdelingsregel <b>{{ group.distribution_rule }}</b>.<br>
+        U kunt nu besluiten hoeveel punten u wilt bijdragen aan het groepsproject in deze ronde.<br>
+        Vul hieronder uw bijdrage in gehele getallen in, <b>tussen de 0 en 20 punten</b>.
+    </p>
+
+    <p> U bent <b>Speler {{ player.id_in_group }}</b> en daarmee bent u een <b>{{ player.role }} kosten</b> speler.<br>
+        Speler 1 en 2 zijn lage kosten spelers, spelers 3 en 4 zijn hoge kosten spelers.
+    </p>
+
+    <hr> <hr>
+
+    <p> U bent speler <b>{{ player.id_in_group }}</b></p>
+
+    {% formfield player.contribution with label="Mijn bijdrage tot het groepsproject is" %}
+
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: Steek alstufblieft uw hand op als u een vraag heeft.</i></p>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Phase 3:
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Welcome to Phase 3 of the experiment.<br>
+    This Phase consists of {{ Constants.phase3|length }} Rounds.
+</p>
+
+<p>
+    The Distribution rule during these rounds is voted for by each player.<br>
+    The <b>majority vote</b> will decide the rule, in case of a tie, the rule will be randomly selected.
+</p>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Aankondiging volgende ronde
+{% endblock %}
+
+{% block content %}
+
+<p> U begint zo meteen aan ronde {{ subsession.round_number }}.<br>
+    De verdelingsregel in deze ronde is: <b>{{ group.distribution_rule }}</b>.
+
+</p>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: Steek alstublieft uw hand op als u een vraag heeft.</i></p>
+{% endblock %}

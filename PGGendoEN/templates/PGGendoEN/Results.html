@@ -1,0 +1,62 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Round {{ subsession.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+       <table class="table">
+        <tr>
+            <th>Round</th>
+            <th>Threshold</th>
+            <th>Contribution Player 1</th>
+            <th>Contribution Player 2</th>
+            <th>Contribution Player 3</th>
+            <th>Contribution Player 4</th>
+            <th>Average contribution</th>
+            <th>Payoff Player 1</th>
+            <th>Payoff Player 2</th>
+            <th>Payoff Player 3</th>
+            <th>Payoff Player 4</th>
+            <th>Average payoff</th>
+        </tr>
+        <tr>
+                <td> {{ subsession.round_number }}</td>
+                <td> {{ group.threshold }}</td>
+            {%  for p in subsession.player_set.all %}
+                <td> {{ p.contribution }}</td>
+            {% endfor %}
+                <td> {{ group.avg_contribution }}</td>
+            {% for p in subsession.player_set.all %}
+                <td> {{ p.payoff_r }}</td>
+            {% endfor %}
+                <td>{{ group.avg_payoff }}</td>
+        </tr>
+    </table>
+
+
+    <hr> </hr>
+    <h4> Summary of contributions and profits this round:</h4>
+
+        <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>You are player: </td><td><b>{{ player.id_in_group }}</b></td></tr>
+        <tr><td>The distribution rule: </td><td> <b>{{ group.distribution_rule }}</b></td></tr>
+        <tr><td>The group threshold: </td><td><b>{{ group.threshold }}</b></td></tr>
+        <tr><td>Total group contribution: </td><td><b>{{ group.total_contribution }}</b></td></tr>
+        <tr><td>Total group bonus: </td><td><b>{{ group.bonus }}</b></td></tr>
+        <tr><td>Average contribution in your group: </td><td><b>{{ group.avg_contribution }}</b></td></tr>
+        <tr><td>Your contribution: </td><td><b>{{ player.contribution}}</b></td></tr><tr>
+        <tr><td>Your payoff: </td><td><b>{{ player.payoff_r }}</b></td></tr>
+
+
+    </table>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

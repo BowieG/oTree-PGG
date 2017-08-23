@@ -1,0 +1,62 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Ronde {{ subsession.round_number }} van {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+       <table class="table">
+        <tr>
+            <th>Ronde</th>
+            <th>Grenswaarde</th>
+            <th>Bijdrage Speler 1</th>
+            <th>Bijdrage Speler 2</th>
+            <th>Bijdrage Speler 3</th>
+            <th>Bijdrage Speler 4</th>
+            <th>Gemiddelde Bijdrage</th>
+            <th>Verdienste Speler 1</th>
+            <th>Verdienste Speler 2</th>
+            <th>Verdienste Speler 3</th>
+            <th>Verdienste Speler 4</th>
+            <th>Gemiddelde Verdienste</th>
+        </tr>
+        <tr>
+                <td> {{ subsession.round_number }}</td>
+                <td> {{ group.threshold }}</td>
+            {%  for p in subsession.player_set.all %}
+                <td> {{ p.contribution }}</td>
+            {% endfor %}
+                <td> {{ group.avg_contribution }}</td>
+            {% for p in subsession.player_set.all %}
+                <td> {{ p.payoff_r }}</td>
+            {% endfor %}
+                <td>{{ group.avg_payoff }}</td>
+        </tr>
+    </table>
+
+
+    <hr> </hr>
+    <h4> Samenvatting van Bijdragen en Verdiensten in deze ronde:</h4>
+
+        <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>U bent Speler: </td><td><b>{{ player.id_in_group }}</b></td></tr>
+        <tr><td>De Verdelingsregel is: </td><td> <b>{{ group.distribution_rule }}</b></td></tr>
+        <tr><td>De Grenswaarde van groepsbijdragen is: </td><td><b>{{ group.threshold }}</b></td></tr>
+        <tr><td>Totale Groepsbijdragen is: </td><td><b>{{ group.total_contribution }}</b></td></tr>
+        <tr><td>Totaal te verdelen bedrag: </td><td><b>{{ group.bonus }}</b></td></tr>
+        <tr><td>De Gemiddelde bijdrage in uw groep is: </td><td><b>{{ group.avg_contribution }}</b></td></tr>
+        <tr><td>Uw bijdrage is: </td><td><b>{{ player.contribution}}</b></td></tr><tr>
+        <tr><td>Uw verdienste in deze ronde is: </td><td><b>{{ player.payoff_r }}</b></td></tr>
+
+
+    </table>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: Steek alstublieft uw hand op als u een vraag heeft.</i></p>
+{% endblock %}
