@@ -67,6 +67,8 @@ class Group(BaseGroup):
                 (['Gelijk deel van de bonus', 'Gelijke verdiensten'])
         else:
             self.distribution_rule = self.in_round(self.round_number - 1).distribution_rule
+            if self.in_round(self.round_number - 1).distribution_rule == 'Gelijk deel van de bonus uitzondering':
+                self.distribution_rule = 'Gelijke verdiensten'
 
             """"This sets the distribution rule of each phase."""
 
@@ -80,14 +82,7 @@ class Group(BaseGroup):
     def set_payoffs(self):
         self.total_contribution = sum([p.contribution for p in self.get_players()])
         self.avg_contribution = self.total_contribution / Constants.players_per_group
-        if self.total_contribution < self.threshold:
-            self.bonus = 0
-        else:
-            self.bonus = Constants.efficiency_factor * self.threshold
-
-            """"When the total contribution is larger or equal to the threshold,
-                a bonus of which the size depends on the efficiency factor will 
-                eventually be added to the player's payoff."""
+        self.bonus = Constants.efficiency_factor * self.threshold
 
         for p in self.get_players():
             if 'lage' in p.role():
@@ -103,14 +98,21 @@ class Group(BaseGroup):
                     p.payoff_r = p.value
             else:
                 for p in self.get_players():
-                    p.payoff_r = (sum([p.value for p in self.get_players()]) + self.bonus)\
-                                 / Constants.players_per_group
-                    if p.payoff_r < p.value:
-                        p.payoff_r = p.value
+                    p.payoff_r = (sum([p.value for p in self.get_players()]) + self.bonus) \
+                                    / Constants.players_per_group
 
                     """"When threshold is met, payoff is calculated by summing the p.values,
                         adding them to the bonus, and dividing it by the amount of players 
                         per group (4 in this case)"""
+
+                    p.check_r = p.payoff_r - p.value
+                    if any(p.check_r < 0 for p in self.get_players() if p.check_r is not None):
+                        self.distribution_rule = 'Gelijk deel van de bonus uitzondering'
+                        p.payoff_r = p.value + (self.bonus / Constants.players_per_group)
+
+                    """"An exception to the Equal payoff occurs when p.payoff_r is less
+                            than p.value, resulting in a value loss for a player. In that case
+                            the distribution rule is adjusted to equal share of the bonus"""
 
         else:
             if self.total_contribution < self.threshold:
@@ -159,6 +161,11 @@ class Player(BasePlayer):
 
     payoff_r = models.CurrencyField(
         doc=""""payoff in a certain round"""
+    )
+
+    check_r = models.FloatField(
+        doc=""""The check for Equal payoff viability, if negative value,
+         it's not viable"""
     )
 
     earnings_phase1 = models.CurrencyField()

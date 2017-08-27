@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
     DEBUG = False
 else:
-    DEBUG = True
+    DEBUG = False
 
 # don't share this with anybody.
 SECRET_KEY = 'u4-4)1&c@(odb3*e*&y4%4v7q+s66-7-y=kzg3jy6$h6ou_)4r'
