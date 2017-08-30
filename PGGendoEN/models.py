@@ -83,7 +83,9 @@ class Group(BaseGroup):
     def set_payoffs(self):
         self.total_contribution = sum([p.contribution for p in self.get_players()])
         self.avg_contribution = self.total_contribution / Constants.players_per_group
-        self.bonus = Constants.efficiency_factor * self.threshold
+        if self.total_contribution < self.threshold:
+            self.bonus = 0
+        else: self.bonus = Constants.efficiency_factor * self.threshold
 
         for p in self.get_players():
             if 'low' in p.role():

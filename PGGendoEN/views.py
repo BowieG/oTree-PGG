@@ -89,7 +89,7 @@ class ThresholdWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_threshold()
 
-    body_text = "Gelieve te wachten tot elke speler zijn voorstel ingeleverd heeft."
+    body_text = "Please wait"
 
 
 class Contribute(Page):
@@ -106,7 +106,7 @@ class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoffs()
 
-    body_text = "Gelieve te wachten tot elke speler zijn bijdrage heeft gekozen."
+    body_text = "Please wait"
 
 
 class Results(Page):
@@ -130,7 +130,7 @@ class EarningsWaitPage(WaitPage):
         for p in self.group.get_players():
             p.set_payoff()
 
-    body_text = "Gelieve te wachten tot elke speler het experiment afgerond heeft."
+    body_text = "Please wait"
 
 
 class Earnings(Page):

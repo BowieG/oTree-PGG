@@ -13,7 +13,7 @@ class IntroWaitPagePhase1(WaitPage):
         self.group.set_distribution_rule()
         self.group.set_threshold()
 
-    body_text = "Gelieve te wachten op elke speler."
+    body_text = "Please wait"
 
 
 class IntroWaitPagePhase2(WaitPage):
@@ -25,7 +25,7 @@ class IntroWaitPagePhase2(WaitPage):
         self.group.set_distribution_rule()
         self.group.set_threshold()
 
-    body_text = "Gelieve te wachten op elke speler."
+    body_text = "Please wait"
 
 
 class IntroWaitPagePhase3(WaitPage):
@@ -35,7 +35,7 @@ class IntroWaitPagePhase3(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_threshold()
 
-    body_text = "Gelieve te wachten op elke speler."
+    body_text = "Please wait"
 
 
 class Phase1Intro(Page):
@@ -80,7 +80,7 @@ class DistributionWaitPage(WaitPage):
         self.group.set_distribution_rule()
         self.group.set_threshold()
 
-    body_text = "Gelieve te wachten op elke speler."
+    body_text = "Please wait"
 
 
 class DistributionRuleAnnounce(Page):
@@ -101,7 +101,7 @@ class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoffs()
 
-    body_text = "Gelieve te wachten tot elke speler zijn bijdrage heeft gekozen."
+    body_text = "Please wait"
 
 
 class Results(Page):
@@ -125,7 +125,7 @@ class EarningsWaitPage(WaitPage):
         for p in self.group.get_players():
             p.set_payoff()
 
-    body_text = "Gelieve te wachten tot iedereen het experiment afgerond heeft."
+    body_text = "Please wait"
 
 
 class Earnings(Page):
